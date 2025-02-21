@@ -1,46 +1,9 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Code2, Briefcase, User, ChevronDown, Phone, MapPin, Award, ChevronLeft, ChevronRight, Building2 } from 'lucide-react';
+import { Github, Linkedin, Mail, Code2, Briefcase, User, ChevronDown, Phone, MapPin, Award, ChevronLeft, ChevronRight, Building2, Instagram } from 'lucide-react';
 
 function App() {
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const certificates = [
-    {
-      title: "Frontend Development - HTML",
-      issuer: "Great Learning",
-      date: "2024",
-      image: "https://dtmvamahs40ux.cloudfront.net/ComplementaryCourseCertificate/4537328/original/Ammar_Waluya20240418-73-rc1ya9.jpg"
-    },
-    {
-      title: "Frontend Development - CSS",
-      issuer: "Great Learning",
-      date: "2024",
-      image: "https://dtmvamahs40ux.cloudfront.net/ComplementaryCourseCertificate/4525832/original/Ammar_Waluya20240416-73-1b8z1nk.jpg"
-    },
-    {
-      title: "Flutter for Beginners",
-      issuer: "Great Learning",
-      date: "2024",
-      image: "https://dtmvamahs40ux.cloudfront.net/ComplementaryCourseCertificate/4050178/original/Ammar_Waluya20240125-70-h0o17c.jpg"
-    },
-    {
-      title: "Web Programming With Laravel",
-      issuer: "Binus Center",
-      date: "2023",
-      image: "https://media.licdn.com/dms/image/v2/D5622AQGvSBluFONbMQ/feedshare-shrink_800/feedshare-shrink_800/0/1694178951253?e=1742428800&v=beta&t=Z4sETR0uoi7A0ntdeFIHkzrSFKr1zF6Lmp2Y-dPQdVc"
-    },
-  ];
-
-  const [currentCertIndex, setCurrentCertIndex] = useState(0);
-
-  const nextCertificate = () => {
-    setCurrentCertIndex((prev) => (prev + 1) % certificates.length);
-  };
-
-  const prevCertificate = () => {
-    setCurrentCertIndex((prev) => (prev - 1 + certificates.length) % certificates.length);
   };
 
   return (
@@ -65,6 +28,9 @@ function App() {
             </a>
             <a href="https://www.linkedin.com/in/haikal-waluya-waltods/" className="text-white hover:text-gray-300 transition-colors">
               <Linkedin size={24} />
+            </a>
+            <a href="https://www.instagram.com/haikal_waluya/" className="text-white hover:text-gray-300 transition-colors">
+              <Instagram size={24} />
             </a>
           </div>
           <button 
@@ -291,61 +257,56 @@ function App() {
         </div>
       </section>
 
-      {/* Certificates Section */}
+      {/* Experience Section */}
       <section className="py-20 bg-gray-100 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
             <Award className="text-blue-600" />
-            Certificates
+            Certificate
           </h2>
-          <div className="relative max-w-2xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="relative aspect-[4/3] w-full">
-                <img 
-                  src={certificates[currentCertIndex].image}
-                  alt={certificates[currentCertIndex].title}
-                  className="w-full h-full object-contain bg-gray-50"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <div className="p-6 text-white">
-                    <h3 className="text-xl font-bold mb-2">{certificates[currentCertIndex].title}</h3>
-                    <p className="text-gray-200">
-                      {certificates[currentCertIndex].issuer} • {certificates[currentCertIndex].date}
-                    </p>
+          <div className="space-y-6">
+            {[
+              {
+                role: "Learning Flutter For Beginner",
+                company: "Great Learning",
+                period: "2024",
+              },
+              {
+                role: "Frontend - HTML",
+                company: "Great Learning",
+                period: "2024",
+              },
+              {
+                role: "Frontend - CSS",
+                company: "Great Learning",
+                period: "2024",
+              },
+              {
+                role: "Pemrograman Dengan Dart",
+                company: "Dicoding",
+                period: "2024",
+              },
+              {
+                role: "Programming With Laravel",
+                company: "Binus Center",
+                period: "2023",
+              },
+            ].map((experience, index) => (
+              <div 
+                key={index} 
+                className="bg-white rounded-lg shadow-lg p-6 relative overflow-hidden"
+              >
+                <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-900">{experience.role}</h3>
+                    <p className="text-blue-600 font-medium">{experience.company}</p>
+                  </div>
+                  <div className="flex flex-col md:items-end text-sm text-gray-600">
+                    <div className="font-medium">{experience.period}</div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Navigation Buttons */}
-            <button 
-              onClick={prevCertificate}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-colors"
-              aria-label="Previous certificate"
-            >
-              <ChevronLeft size={24} className="text-gray-800" />
-            </button>
-            <button 
-              onClick={nextCertificate}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-colors"
-              aria-label="Next certificate"
-            >
-              <ChevronRight size={24} className="text-gray-800" />
-            </button>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-4">
-              {certificates.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentCertIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentCertIndex ? 'bg-blue-600' : 'bg-gray-300'
-                  }`}
-                  aria-label={`Go to certificate ${index + 1}`}
-                />
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -386,6 +347,9 @@ function App() {
                   </a>
                   <a href="https://www.linkedin.com/in/haikal-waluya-waltods/" className="text-gray-600 hover:text-blue-600 transition-colors">
                     <Linkedin size={24} />
+                  </a>
+                  <a href="https://www.instagram.com/haikal_waluya/" className="text-gray-600 hover:text-blue-600 transition-colors">
+                    <Instagram size={24} />
                   </a>
                 </div>
               </div>
@@ -446,6 +410,9 @@ function App() {
             </a>
             <a href="https://www.linkedin.com/in/haikal-waluya-waltods/" className="hover:text-gray-300 transition-colors">
               <Linkedin size={20} />
+            </a>
+            <a href="https://www.instagram.com/haikal_waluya/" className="text-white hover:text-gray-300 transition-colors">
+              <Instagram size={24} />
             </a>
           </div>
           <p className="text-gray-400">© 2025 Haikal Waluya. All rights reserved.</p>
